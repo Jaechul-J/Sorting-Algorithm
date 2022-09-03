@@ -31,10 +31,38 @@ class DrawInformation:
         self.block_height = round((self.height - self.TOP_PAD) / (self.max_val - self.min_val))
         self.start_x = self.SIDE_PAD // 2
 
+
 def generate_starting_list(n, min_val, max_val):
     lst = []
 
-    for _ in range(m):
+    for _ in range(n):
         val = random.randint(min_val, max_val)
         lst.append(val)
     return lst
+
+
+def main():
+    run = True
+    clock = pygame.time.Clock()
+
+    n = 50
+    min_val = 0
+    max_val = 100
+
+
+    lst = generate_starting_list(n, min_val, max_val)
+    draw_info = DrawInformation(800, 600, lst)
+
+    while run:
+        clock.tick(60)
+
+        pygame.display.update()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+    pygame.quit()
+
+
+if __name__ == "__main__":
+    main()
